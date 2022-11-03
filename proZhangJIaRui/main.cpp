@@ -6,7 +6,7 @@
 #include<vector>
 #include<algorithm>
 
-//int test = 1;
+
 using namespace std;
 
 //data_structure.h
@@ -74,10 +74,12 @@ void Read_Blocks(vector<block>& blocks, string datafile)
 
 	string line;
 	ifstream f;
-	f.open(datafile.c_str());
-	f.seekg(36, ios::cur);
+	f.open(datafile.c_str(), ios::in);
+	//f.seekg(36, ios::cur);
+	if (f) cout << "succeed" << endl;
+	else cout << "falied" << endl;
 	int i, j;
-	auto it = blocks.begin();//might be wrong
+	//auto it = blocks.begin();//might be wrong
 	while (getline(f, line)) 
 	{
 		i = 0, j = 0;
@@ -96,13 +98,22 @@ void Read_Blocks(vector<block>& blocks, string datafile)
 			j++;
 		}
 
-		it->height = stoi(info[0]);
+		// This form is wrong somehow
+		/*it->height = stoi(info[0]);
 		it->hash = info[1];
 		it->prevHash = info[2];
 		it->merkleRoot = info[3];
 		it->nonce = stoi(info[4]);
+		it++;*/
 
-		it++;
+		//This form is right
+		block tmp;
+		tmp.height = atoi(info[0].c_str());
+		tmp.hash = info[1];
+		tmp.prevHash = info[2];
+		tmp.merkleRoot = info[3];
+		tmp.nonce = atoi(info[4].c_str());
+		blocks.push_back(tmp);
 	}
 }
 
@@ -131,7 +142,7 @@ void Read_Transactions(vector<transaction>& transactions, string datafile)
 			j++;
 		}
 
-		auto it = transactions.begin();
+		/*auto it = transactions.begin();
 
 		it->height = stoi(info[0]);
 		it->txid = info[1];
@@ -139,7 +150,9 @@ void Read_Transactions(vector<transaction>& transactions, string datafile)
 		it->input_count = stoi(info[3]);
 		it->output_count = stoi(info[4]);
 
-		it++;
+		it++;*/
+		//TODO: change it to the right form
+		//your code here:
 	}
 }
 
@@ -168,7 +181,7 @@ void Read_Inputs(vector<input>& inputs, string datafile)
 			j++;
 		}
 
-		auto it = inputs.begin();
+		/*auto it = inputs.begin();
 
 		it->height = stoi(info[0]);
 		it->txid = info[1];
@@ -177,7 +190,9 @@ void Read_Inputs(vector<input>& inputs, string datafile)
 		it->prevTxOutIndex = stoi(info[4]);
 		it->scriptSig = info[5];
 
-		it++;
+		it++;*/
+		//TODO: change it to the right form
+		//your code here:
 	}
 }
 
@@ -208,13 +223,15 @@ void Read_Outputs(vector<output>& outputs, string datafile)
 
 		auto it = outputs.begin();
 
-		it->height = stoi(info[0]);
+		/*it->height = stoi(info[0]);
 		it->txid = info[1];
 		it->index = stoi(info[1]);
 		it->value = stoi(info[3]);
 		it->script = info[4];
 
-		it++;
+		it++;*/
+		//TODO: change it to the right form
+		//your code here:
 
 	}
 }
@@ -322,7 +339,8 @@ int main() {
 	//printf("1\n");
 
 	//∂¡»Î ˝æ›
-	Read_Blocks(blocks, "block.csv");
+	// Use absolute path as Argument
+	Read_Blocks(blocks, "C:\\Users\\86138\\source\\repos\\RUC_Project\\proZhangJIaRui\\blocks.csv");	//Change it to your absolute path
 	//Read_Inputs(inputs, "inputs.csv");
 	//Read_Outputs(outputs, "outputs.csv");
 	//Read_Transactions(transactions, "transactions.csv");
