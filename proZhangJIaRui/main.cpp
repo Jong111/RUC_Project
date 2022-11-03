@@ -6,7 +6,7 @@
 #include<vector>
 #include<algorithm>
 
-//int test = 1;
+
 using namespace std;
 
 //data_structure.h
