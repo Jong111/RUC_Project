@@ -75,9 +75,8 @@ void Read_Blocks(vector<block>& blocks, string datafile)
 	string line;
 	ifstream f;
 	f.open(datafile.c_str(), ios::in);
-	//f.seekg(36, ios::cur);
-	if (f) cout << "succeed" << endl;
-	else cout << "falied" << endl;
+	f.seekg(36, ios::cur);
+	//if (f) cout << "succeed" << endl;
 	int i, j;
 	//auto it = blocks.begin();//might be wrong
 	while (getline(f, line)) 
