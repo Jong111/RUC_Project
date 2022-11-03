@@ -6,7 +6,7 @@
 #include<vector>
 #include<algorithm>
 
-
+//int test = 1;
 using namespace std;
 
 //data_structure.h
@@ -77,6 +77,7 @@ void Read_Blocks(vector<block>& blocks, string datafile)
 	f.open(datafile.c_str());
 	f.seekg(36, ios::cur);
 	int i, j;
+	auto it = blocks.begin();//might be wrong
 	while (getline(f, line)) 
 	{
 		i = 0, j = 0;
@@ -95,7 +96,6 @@ void Read_Blocks(vector<block>& blocks, string datafile)
 			j++;
 		}
 
-		auto it = blocks.begin();
 		it->height = stoi(info[0]);
 		it->hash = info[1];
 		it->prevHash = info[2];
@@ -323,25 +323,26 @@ int main() {
 
 	//∂¡»Î ˝æ›
 	Read_Blocks(blocks, "block.csv");
-	Read_Inputs(inputs, "inputs.csv");
-	Read_Outputs(outputs, "outputs.csv");
-	Read_Transactions(transactions, "transactions.csv");
+	//Read_Inputs(inputs, "inputs.csv");
+	//Read_Outputs(outputs, "outputs.csv");
+	//Read_Transactions(transactions, "transactions.csv");
 
-	//printf("2\n");
+	////printf("2\n");
 
-	Print_Length(Sqblock_to_Linkblock(blocks));
+	//Print_Length(Sqblock_to_Linkblock(blocks));
 
-	//printf("3\n");
+	////printf("3\n");
 
-	check_transaction_legality(transactions);
+	//check_transaction_legality(transactions);
 
-	//printf("4\n");
+	////printf("4\n");
 
-	Print_Block(blocks);
+	//Print_Block(blocks);
 
-	//printf("5");
+	////printf("5");
 
-	Print_Transaction(transactions);
+	//Print_Transaction(transactions);
+	cout << blocks.size();
 
 	return 0;
 }
